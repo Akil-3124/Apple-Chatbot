@@ -5,18 +5,18 @@ import json
 import requests
 import os
 
-#configure api keys
-groq_api_key = os.getenv("GROQ_API_KEY")
-rapidapi_key = os.getenv("RAPIDAPI_KEY")
-
 # Set up Streamlit page configuration
 st.set_page_config(layout="wide", page_title="Apple Chatbot")
 
 st.title("Apple chatbot")
 st.subheader("",divider="orange", anchor=False)
 
-# Initialize Groq client with API key
-client = Groq(api_key="Groq API KEY")
+# Load the API keys from environment variables
+groq_api_key = os.getenv("GROQ_API_KEY")
+rapidapi_key = os.getenv("RAPIDAPI_KEY")
+
+# Initialize Groq client with API key from environment variable
+client = Groq(api_key=groq_api_key)
 
 # Load the external knowledge base from a JSON file
 def load_knowledge_base(file_path: str) -> list:
@@ -80,7 +80,7 @@ def fetch_related_keywords(query):
     querystring = {"query": query, "limit": "2", "related_keywords": "true"}
 
     headers = {
-        "x-rapidapi-key": "RAPIDAPI KEY",
+        "x-rapidapi-key": rapidapi_key,  # Use RapidAPI key from environment variable
         "x-rapidapi-host": "joj-web-search.p.rapidapi.com"
     }
 
