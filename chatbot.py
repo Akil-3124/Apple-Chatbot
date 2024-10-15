@@ -5,6 +5,10 @@ import json
 import requests
 import os
 
+#configure api keys
+groq_api_key = os.getenv("GROQ_API_KEY")
+rapidapi_key = os.getenv("RAPIDAPI_KEY")
+
 # Set up Streamlit page configuration
 st.set_page_config(layout="wide", page_title="Apple Chatbot")
 
